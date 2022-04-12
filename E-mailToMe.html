@@ -20,16 +20,24 @@
   </div>
 <nav>
   <ul>
-    <li><a href="http://127.0.0.1:53164/index.html">Main Page</a></li>
-    <li id=Comics><a href="http://127.0.0.1:53164/Comics&Gallery.html">Comics & Gallery</a></li>
-    <li id=ContactMe><a href="http://127.0.0.1:53164/E-mailToMe.html">Contact me!</a></li>
+    <li><a href="index.html">Main Page</a></li>
+    <li id=Comics><a href="Comics&Gallery.html">Comics & Gallery</a></li>
+    <li id=ContactMe><a href="E-mailToMe.html">Contact me!</a></li>
   </ul>
 </nav>
-<div>
+  <div>
   <form action="https://formsubmit.co/kutasimarton@yahoo.com" method="POST">
-     <input type="text" name="name" required>
-     <input id=Email type="email" name="email" required>
+    <div>
+    
+     <textarea rows="10" cols="75" id=description type="text" name="name" placeholder="Lay here everything you want to tell me" required></textarea>
+      
+      </div>
+      <div>
+     <input id=Email type="email" name="email" placeholder="Your@email" required>
+        </div>
+        <div>
      <button type="submit">Send</button>
+    </div>
    
   </form>
 </div>

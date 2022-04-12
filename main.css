@@ -120,24 +120,27 @@ div p{
   image-rendering: pixelated;
 }
 
-input,button{
+button{
   text-align:justify;
   display:inline-block;
-  
-}
-input{
-  width:40rem;
-  text-align:start;
-  padding-bottom:4rem;
-  font-size:1rem;
-  word-break:break-all;
 }
 #Email{
  font-size:1rem;
  padding-bottom:0.3rem;
  width:11rem;
 }
-
+@media(max-width:1025px){
+  h1{
+    text-align:center;
+  }
+  #description{
+    width:20rem;
+  }
+  button{
+    padding:1rem;
+    font-size:2rem;
+  }
+}
 
 
 
