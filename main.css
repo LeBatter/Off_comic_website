@@ -52,7 +52,7 @@ table {
   box-sizing:border-box;
   align-items: center;
   cursor: url(Assets/off_Cursor.png),auto;
-  font-family: '7:12 serif';
+  font-family: '7:12 serif','VT323';
 }
 
 p,h1,h2{
@@ -140,7 +140,11 @@ button{
     padding:1rem;
     font-size:2rem;
   }
+  nav li{
+    margin-bottom:1rem;
+  }
 }
+
 
 
 
