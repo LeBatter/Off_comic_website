@@ -56,7 +56,7 @@ table {
 }
 
 p,h1,h2{
-  font-family: '7:12 serif';
+  font-family: '7:12 serif','VT323', monospace;
   color:white;
   text-align:justify;
   cursor: url(Assets/off_Cursor_Text.png),text;
