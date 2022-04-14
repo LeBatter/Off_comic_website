@@ -52,7 +52,7 @@ table {
   box-sizing:border-box;
   align-items: center;
   cursor: url(Assets/off_Cursor.png),auto;
-  font-family: '7:12 serif','VT323';
+  font-family: '7:12 serif','VT323', monospace;;
 }
 
 p,h1,h2{
