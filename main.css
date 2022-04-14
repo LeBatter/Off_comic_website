@@ -52,11 +52,11 @@ table {
   box-sizing:border-box;
   align-items: center;
   cursor: url(Assets/off_Cursor.png),auto;
-  font-family: 7:12 serif, 'VT323', monospace;
+  font-family: "7:12 serif", "VT323", monospace;
 }
 
 p,h1,h2{
-  font-family: 7:12 serif, 'VT323' , monospace;
+  font-family: "7:12 serif", "VT323" , monospace;
   color:white;
   text-align:justify;
   cursor: url(Assets/off_Cursor_Text.png),text;
@@ -75,7 +75,7 @@ body{
 nav li{
   line-height: 3rem;
   height: 3rem;
-  font-family: 7:12 serif, 'VT323' ,monospace;
+  font-family: "7:12 serif", "VT323" ,monospace;
   display: inline-block;
   background-color:black;
   width: 7.5rem;
