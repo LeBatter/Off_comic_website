@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="myscripts.js"></script>
      <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="main.css">
@@ -17,39 +19,21 @@
         type = "image/png">    
   </head>
   
- <body>
-  <div>
-   <h1>Contact me!</h1>
-  </div>
-<nav>
-  <ul>
-    <li><a href="index.html">Main Page</a></li>
-    <li id=Comics><a href="Comics&Gallery.html">Comics & Gallery</a></li>
-    <li id=ContactMe><a href="E-mailToMe.html">Contact me!</a></li>
-  </ul>
-</nav>
-   <div>
-   <p>              </p>
-   </div>
-  <div>
-  <form action="https://formsubmit.co/kutasimarton@yahoo.com" method="POST">
-    <div>
-    
-     <textarea rows="10" cols="75" id=description type="text" name="name" placeholder="Lay here everything you want to tell me" required></textarea>
-      
-    
-     <input id=Email type="email" name="email" placeholder="Your@email" required>
-      
-     <button type="submit">Send</button>
-    </div>
-   
-  </form>
+  
+  
+  <!-- add with javascript -->
+<body>
+<div class="container">
+  <h2>Page purification in progress<span id="wait">.</span></h2>
+  <div class="progress"></div>
 </div>
+  <script>
+var dots = window.setInterval( function() {
+    var wait = document.getElementById("wait");
+    if ( wait.innerHTML.length > 2 ) 
+        wait.innerHTML = "";
+    else 
+        wait.innerHTML += ".";
+    }, 1000);
+</script>
 </body>
-  
-  
-  
-  
-  
-  
-</html>
