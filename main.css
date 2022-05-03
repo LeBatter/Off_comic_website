@@ -52,19 +52,16 @@ table {
   box-sizing:border-box;
   align-items: center;
   cursor: url(Assets/off_Cursor.png),auto;
-<<<<<<< HEAD
   font-family: '7:12 serif','VT323', monospace !important;
 }
 
 p,h1,h2{
   font-family: '7:12 serif','VT323', monospace;
-=======
   font-family: "7:12 serif", "VT323", monospace !important;
 }
 
 p,h1,h2{
   font-family: "7:12 serif", "VT323" , monospace;
->>>>>>> 8264fd9591e6651707b7f176fe25fee5ee929ded
   color:white;
   text-align:justify;
   cursor: url(Assets/off_Cursor_Text.png),text;
