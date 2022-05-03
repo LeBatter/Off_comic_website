@@ -56,11 +56,6 @@ table {
 }
 
 p,h1,h2{
-  font-family: '7:12 serif','VT323', monospace;
-<<<<<<< HEAD
-=======
-	
->>>>>>> eb9b3bc2aa7ef5e133ae8e2b74aa6b6ffd5ffbd1
   font-family: "7:12 serif", "VT323", monospace !important;
 }
 
