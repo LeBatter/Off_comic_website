@@ -152,7 +152,17 @@ button{
 
 
 /* loader */
+.bar-space{
+  margin-top:2.2rem;
+  z-index: 1;
+  background:#D1D1D1;
+  position:absolute;
+  width:36.2rem;
+  height:28px;
+  border-radius: 50px;
+}
 .progress-bar {
+  z-index: 2;
   height: 25px;
   background: black;
   border-radius: 50px;

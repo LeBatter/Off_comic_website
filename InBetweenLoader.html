@@ -26,6 +26,7 @@
 <div class="container">
   <h2 id="loader">Page Purification in progress<span id="wait">.</span></h2>
   <div class="progress"></div>
+  <div class="bar-space"></div>
 </div>
   <script>
   window.setTimeout(function () {
@@ -48,7 +49,6 @@ var dots = window.setInterval( function() {
         wait.innerHTML += ".";
     }, 1000);
 </script>
-<<<<<<< HEAD
      <script>
       window.addEventListener(
         "load",
@@ -61,13 +61,10 @@ var dots = window.setInterval( function() {
 
           //end to progress after 5s
           setTimeout(() => {
-            pb.end();
-          }, 5000);
+            pb.end(window.location = 'E-mailToMe.html');
+          }, 13000);
         },
         false
       );
     </script>
 </body>
-=======
-</body>
->>>>>>> 85c6e05a5677808836e72d4971d0ad03e1ef983c

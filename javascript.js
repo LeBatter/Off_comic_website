@@ -55,6 +55,5 @@ class Progress {
     clearInterval(this.intervalCode);
     this.intervalCode = 0;
     this.syncState();
-    window.location = "E-mailToMe.html"
   }
 }
