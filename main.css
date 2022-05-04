@@ -191,7 +191,7 @@ button{
 }
 /* fade in */
 .fade-in-text {
-  animation: fadeIn linear 7s;
+  animation: fadeIn linear 5.5s;
 }
 
 @keyframes fadeIn {
