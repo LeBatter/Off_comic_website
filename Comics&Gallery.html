@@ -28,12 +28,31 @@
   </ul>
 </nav>
 
- <ul class=GalleryUl>
-  <li class=GalleryIl>
-   <img class=GalleryImg src=Assets/EPSON001.JPG>
-    <img class=GalleryImg src=Assets/batter%20back.png>
-    <img class=GalleryImg src=Assets/EPSON001.JPG>
-    <img class=GalleryImg src=Assets/batter%20woh.png>
-  </li>
- </ul>
+<style>
+  .gallery {
+    width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-item img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+  }
+</style>
+
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="Assets/EPSON001.JPG" />
+    <p>benis</p>
+  </div>
+</div>
 </body>
