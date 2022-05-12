@@ -37,14 +37,15 @@
   }
   .gallery-item {
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     align-items: center;
-    width:200px;
+    width:300px;
     text-align:left;
     word-break:break-all;
   }
    .gallery-item p {
     text-align: left;
+    font-size:12px;
   }
 
   .gallery-item img {
@@ -52,14 +53,36 @@
     height: 190px;
     object-fit: contain;
   }
+@media(max-width:992px){
+.gallery{
+width:100%;
+flex-direction:column;
+  }
+.gallery-item{
+    width:100%;
+  }
+.gallery-item img{
+  width:404px;
+  height:300px;
+}
 </style>
 
 <div class="gallery">
   <div class="gallery-item">
     <img src="Assets/EPSON001.JPG" />
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
+    </div>
+    <div class="gallery-item">
     <img src="Assets/batter%20woh.png"/>
-    <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>>
-  </div>
-</div>
+    <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
+    </div>
+    <div class="gallery-item">
+    <img src="Assets/EPSON001.JPG" />
+    <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
+    </div>
+    <div class="gallery-item">
+    <img src="Assets/EPSON001.JPG" />
+    <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
+    </div>
+ </div>
 </body>
