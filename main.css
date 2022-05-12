@@ -54,11 +54,6 @@ table {
   cursor: url(Assets/off_Cursor.png),auto;
   font-family: '7:12 serif','VT323', monospace !important;
 }
-
-p,h1,h2{
-  font-family: "7:12 serif", "VT323", monospace !important;
-}
-
 p,h1,h2{
   font-family: "7:12 serif", "VT323" , monospace;
   color:white;
@@ -107,7 +102,7 @@ nav a {
 div{
   text-align:center;
 }
-div p{
+.InTheMiddle{
   word-break: keep-all;
   width:550px;
 }
@@ -165,7 +160,7 @@ button{
 
 
 @media(max-width:1025px){
-   div p {
+  .InTheMiddle {
   width:400px;
   }
   h1{
