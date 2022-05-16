@@ -28,28 +28,7 @@
   </ul>
 </nav>
   
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
-</script>
 
 <style>
   .gallery {
@@ -62,7 +41,7 @@ span.onclick = function() {
     display:flex;
     flex-direction:column;
     align-items: center;
-    width:300px;
+    width:320px;
     text-align:left;
     word-break:break-all;
   }
@@ -73,10 +52,45 @@ span.onclick = function() {
   }
 
   .gallery-item img {
-    width: 250px;
+    width: 300px;
     height: 190px;
     object-fit: contain;
   }
+#myImg1{
+cursor: url(Assets/off_Cursor_pointer.png),pointer;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1;
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.9); 
+}
+  .modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+  .modal-content{ 
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
 @media(max-width:992px){
 .gallery{
 width:100%;
@@ -99,7 +113,7 @@ flex-direction:column;
   
 <div class="gallery">
   <div class="gallery-item">
-    <img src="Assets/EPSON001.JPG" />
+    <img src="Assets/EPSON001.JPG" id="myImg1"/>
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
     </div>
     <div class="gallery-item">
@@ -114,6 +128,37 @@ flex-direction:column;
     <img src="Assets/EPSON001.JPG" />
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
     </div>
+  
  </div>
+ <div id="myModal" class="modal">
+  <!-- The Close Button -->
+  <span class="close">x</span>
+<img class="modal-content" class="Picture1">
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption">peniskk</div>
+</div>
+  
+ <script>
+// Get the modal
+var modal = document.getElementsByid("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg1");
+var modalImg = document.getElementsByClassName("Picture1");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+</script>
   
 </body>
