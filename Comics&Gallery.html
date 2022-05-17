@@ -56,7 +56,7 @@
     height: 190px;
     object-fit: contain;
   }
-#myImg1{
+.myImages{
 cursor: url(Assets/off_Cursor_pointer.png),pointer;
 }
 .modal {
@@ -77,10 +77,16 @@ cursor: url(Assets/off_Cursor_pointer.png),pointer;
   display: block;
   width: 80%;
   max-width: 700px;
-}
-  .modal-content{ 
   animation-name: zoom;
   animation-duration: 0.6s;
+}
+  @keyframes zoom {
+  from {
+    transform: scale(0)
+  }
+  to {
+    transform: scale(1)
+  }
 }
 .close {
   position: absolute;
@@ -91,6 +97,18 @@ cursor: url(Assets/off_Cursor_pointer.png),pointer;
   font-weight: bold;
   transition: 0.3s;
 }
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+  
 @media(max-width:992px){
 .gallery{
 width:100%;
@@ -113,33 +131,62 @@ flex-direction:column;
   
 <div class="gallery">
   <div class="gallery-item">
-    <img src="Assets/EPSON001.JPG" id="myImg1"/>
+    <img src="Assets/EPSON001.JPG" class="myImages" id="myImg" alt=/>
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
     </div>
     <div class="gallery-item">
-    <img src="Assets/batter%20woh.png"/>
+    <img src="Assets/batter%20woh.png" class="myImages" id="myImg"/>
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
     </div>
     <div class="gallery-item">
-    <img src="Assets/EPSON001.JPG" />
+    <img src="Assets/batter%20back.png" class="myImages" id="myImg"/>
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
     </div>
     <div class="gallery-item">
-    <img src="Assets/EPSON001.JPG" />
+    <img src="Assets/batter%20screen.png" class="myImages" id="myImg"/>
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
-    </div>
+  </div>
   
  </div>
  <div id="myModal" class="modal">
   <!-- The Close Button -->
   <span class="close">x</span>
-<img class="modal-content" class="Picture1">
+<img class="modal-content" id="myImg1">
   <!-- Modal Caption (Image Text) -->
-  <div id="caption">peniskk</div>
+  <div id="caption"></div>
 </div>
-  
+ 
  <script>
-// Get the modal
+// create references to the modal...
+var modal = document.getElementById('myModal');
+// to all images -- note I'm using a class!
+var images = document.getElementsByClassName('myImages');
+// the image in the modal
+var modalImg = document.getElementById("myImg1");
+// and the caption in the modal
+var captionText = document.getElementById("caption");
+
+// Go through all of the images with our custom class
+for (var i = 0; i < images.length; i++) {
+  var img = images[i];
+  // and attach our click listener for this image.
+  img.onclick = function(evt) {
+    console.log(evt);
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+  }
+}
+
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+  
+</body>
+  // Get the modal
 var modal = document.getElementsByid("myModal");
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
@@ -159,6 +206,3 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() { 
   modal.style.display = "none";
 }
-</script>
-  
-</body>
