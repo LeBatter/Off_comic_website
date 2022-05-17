@@ -57,7 +57,7 @@
     object-fit: contain;
   }
 .myImages{
-cursor: url(Assets/off_Cursor_pointer.png),pointer;
+ cursor:zoom-in;
 }
 .modal {
   display: none; /* Hidden by default */
@@ -131,7 +131,7 @@ flex-direction:column;
   
 <div class="gallery">
   <div class="gallery-item">
-    <img src="Assets/EPSON001.JPG" class="myImages" id="myImg" alt=/>
+    <img src="Assets/EPSON001.JPG" class="myImages" id="myImg" alt=""/>
     <p>benisaddaadasdadsadadsaddasasdasdasdasdadadasdasdasddas</p>
     </div>
     <div class="gallery-item">
@@ -186,23 +186,3 @@ span.onclick = function() {
 </script>
   
 </body>
-  // Get the modal
-var modal = document.getElementsByid("myModal");
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg1");
-var modalImg = document.getElementsByClassName("Picture1");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
