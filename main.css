@@ -93,6 +93,7 @@ nav ul{
   text-align: center;
   padding-bottom:1rem;
 }
+
 nav a {
   text-decoration: none;
   color:white;
@@ -108,6 +109,9 @@ div{
   word-break: keep-all;
   width:550px;
 }
+#ItsaSecret!{
+  text-decoration:underline;
+}
 #BottomGhost{
   display: block;
   margin-left: auto;
@@ -115,7 +119,11 @@ div{
   padding-top:25rem;
   image-rendering: pixelated;
 }
-
+.You_are_here{
+  background-color:white;
+  box-shadow: inset 0 0 0 1px #000, inset 0 0 0 3px black;
+  color:black;
+}
 button{
   text-align:justify;
   display:inline-block;
