@@ -52,14 +52,12 @@ table {
 
 * {
   box-sizing:border-box;
-  align-items: center;
   cursor: url(Assets/off_Cursor.png),auto;
-  font-family: '7:12 serif','VT323', monospace !important;
+  font-family:'VT323', monospace !important;
 }
 p,h1,h2{
-  font-family: "7:12 serif", "VT323" , monospace;
   color:white;
-  text-align:justify;
+  text-align:center;
   cursor: url(Assets/off_Cursor_Text.png),text;
   display:inline-block;
 }
@@ -76,7 +74,6 @@ body{
 nav li{
   line-height: 3rem;
   height: 3rem;
-  font-family: "7:12 serif", "VT323" ,monospace;
   display: inline-block;
   background-color:black;
   width: 7.5rem;
@@ -107,11 +104,106 @@ div{
 }
 .InTheMiddle{
   word-break: keep-all;
+  text-align:left;
   width:550px;
+  font-size:1.2rem;
 }
 #ItsaSecret!{
   text-decoration:underline;
 }
+
+.little_space{
+  margin-bottom:4rem; 
+}
+
+.bigger_font{
+  font-size:1.3rem;
+}
+
+
+
+
+.ComicPadding1{
+  margin-top:50rem;
+}
+.ComicPadding2{
+  margin-top:50rem;
+  opacity:0;
+}
+
+
+
+.Page1{
+  width:40rem;
+  margin-top:5rem;
+  padding-bottom:10rem; 
+}
+
+.Page2{
+  width:50rem;
+  margin-top:5rem;
+  padding-bottom:10rem; 
+}
+
+.Page3{
+  width:60rem;
+  margin-top:5rem;
+  padding-bottom:10rem; 
+}
+
+.BOO{
+  width:65rem;
+  padding-bottom:5rem; 
+}
+
+
+.go_forward{
+float: right;
+}
+.go_back{
+float: left;
+}
+
+.column {
+  float: left;
+
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+/*
+image zoom
+*/
+.click-zoom input[type=checkbox] {
+  display: none
+}
+
+.click-zoom img {
+  transition: transform 0.25s ease;
+  cursor: zoom-in;
+  
+}
+
+.click-zoom input[type=checkbox]:checked~img {
+  transform: scale(2);
+  cursor: zoom-out;
+  padding-top:30rem;
+  background-color: black;
+  max-width:50%;
+}
+
+
+
+
+
+
 #BottomGhost{
   display: block;
   margin-left: auto;
@@ -217,3 +309,10 @@ button{
 .container .progress{
   width: 90%;
 }
+ .page{
+    width:100%;
+    height:100%; 
+   margin:1rem
+  }
+}
+  

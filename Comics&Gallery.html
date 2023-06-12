@@ -27,13 +27,17 @@
     <li id=ContactMe><a href="InBetweenLoaderToEmail.html">Contact me!</a></li>
   </ul>
 </nav>
-  <div>
+  <div class=little_space>
   <p class=InTheMiddle>
    Welcome to the Gallery of Pictures that i made most of these are self-explanatory but there is some description.
-  </p>
+  </p><br>
+  <br>
+  <a href="#jumptocomic" class=bigger_font>Click here for comics</a>
   </div>
 
 
+
+  
 <style>
   .gallery {
     width: 960px;
@@ -47,10 +51,9 @@
     align-items: center;
     width:320px;
     text-align:left;
-    word-break:break-all;
   }
    .gallery-item p {
-    text-align: left;
+    text-align: center;
     font-size:12px;
     width:15rem;
   }
@@ -59,6 +62,7 @@
     width: 300px;
     height: 190px;
     object-fit: contain;
+    text-align:none;
   }
 .myImages{
  cursor:zoom-in;
@@ -127,17 +131,22 @@ flex-direction:column;
   max-width:300px;
 }
 .gallery-item p {
-  text-align: left;
+  text-align: center;
   font-size:12px;
   width:20rem;
+  max-width:300px;
 }
 </style>
   
   
 <div class="gallery">
-  <div class="gallery-item">
+    <div class="gallery-item">
+    <img src="Assets/MERDE.JPG" class="myImages" id="myImg"/>
+    <p>MERDE</p>
+    </div>
+    <div class="gallery-item">
     <img src="Assets/EPSON001.JPG" class="myImages" id="myImg" alt="The scratches i made for the prince whom name is candide."/>
-    <p>The scratches i made for the prince whom name is candide.</p>
+    <p>The scratches i made for the prince whom name is Candide.</p>
     </div>
     <div class="gallery-item">
     <img src="Assets/batter%20woh.png" class="myImages" id="myImg" alt="These 3 pictures are from the game called World of Horror and indie horror game (what a suprise) that i made a mod for."/>
@@ -151,7 +160,6 @@ flex-direction:column;
     <img src="Assets/batter%20screen.png" class="myImages" id="myImg"/>
     <p> </p>
   </div>
-  
  </div>
  <div id="myModal" class="modal">
   <!-- The Close Button -->
@@ -189,5 +197,19 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 </script>
+  
+  
+  
+  
+  
+<div>
+  <h1 id="jumptocomic" class="ComicPadding1">Comics</h1>
+  <ul>
+  <li><a href="Comic_page1.html" class="InTheMiddle">The First Comic</a></li>
+  </ul>
+  <p class=ComicPadding2>.</p>
+</div> 
+  
+
   
 </body>
