@@ -1,1 +1,1 @@
-# Off_comic_website
+Feel Free to report any typos in issues
