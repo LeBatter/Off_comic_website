@@ -1,1 +1,1 @@
-Feel Free to report any typos in issues
+Feel Free to report any typos in contact
