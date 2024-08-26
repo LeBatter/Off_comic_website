@@ -132,7 +132,6 @@ div{
 }
 
 
-
 .Page1{
   width:40rem;
   margin-top:5rem;
@@ -184,7 +183,7 @@ image zoom
 .click-zoom input[type=checkbox] {
   display: none
 }
-
+@media screen and (min-width: 1380px) {
 .click-zoom img {
   transition: transform 0.25s ease;
   cursor: zoom-in;
@@ -220,7 +219,7 @@ button{
   text-align:justify;
   display:inline-block;
 }
-#Email{
+#email{
  font-size:1rem;
  padding-bottom:0.3rem;
  width:11rem;
@@ -315,4 +314,4 @@ button{
    margin:1rem
   }
 }
-  
+
