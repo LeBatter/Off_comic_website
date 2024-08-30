@@ -90,6 +90,10 @@ nav ul{
   text-align: center;
   padding-bottom:1rem;
 }
+a
+{
+ cursor: url(Assets/off_Cursor_pointer.png),pointer; 
+}
 
 nav a {
   text-decoration: none;
@@ -120,8 +124,14 @@ div{
   font-size:1.3rem;
 }
 
+.page_selector{
+  display: inline;
+  margin-right: -4.3px;
+}
 
-
+.page_padding{
+  padding-bottom:1rem;
+}
 
 .ComicPadding1{
   margin-top:50rem;
