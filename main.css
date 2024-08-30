@@ -189,7 +189,7 @@ image zoom
   cursor: zoom-in;
   
 }
-}
+
 .click-zoom input[type=checkbox]:checked~img {
   transform: scale(2);
   cursor: zoom-out;
@@ -197,7 +197,7 @@ image zoom
   background-color: black;
   max-width:50%;
 }
-
+}
 
 
 
