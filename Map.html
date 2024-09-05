@@ -1,0 +1,71 @@
+<html>
+  <head>
+     <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="main.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+  <link href="//db.onlinewebfonts.com/c/1ff3a26d93d113f5678491da51a8ccf6?family=7:12+Serif" rel="stylesheet" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+    <title>Off 2 Comic</title>
+  </head>
+  
+  <body>
+  
+<div>
+  <img src="Assets/blank.JPG" id="target-box">
+  <img src="Assets/blank.JPG" id="target-box2">
+   <img src="Assets/barrier.bmp" id="barrier">
+    </div>
+   <div id="target"> 
+</div> 
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>  
+  /* Map */
+var target = document.getElementById('target');
+var targetBox = document.getElementById('target-box')
+var targetBox2 = document.getElementById('target-box2');
+
+targetBox.addEventListener('click', mouseClicked);
+targetBox2.addEventListener('click', mouseClicked);  
+
+function mouseClicked (event){
+  var xposition = (event.clientX - target.offsetLeft - target.offsetWidth/2);
+  var yposition = (event.clientY - target.offsetTop - target.offsetHeight/2);
+  target.style.transform = "translate("+ xposition + "px," + yposition + "px)";
+  console.log(event);
+}
+</script>  
+
+  </body>
+
