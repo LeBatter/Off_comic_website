@@ -6,7 +6,6 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
-  <link href="//db.onlinewebfonts.com/c/1ff3a26d93d113f5678491da51a8ccf6?family=7:12+Serif" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
@@ -50,21 +49,67 @@
     
     
     
-<script>  
-  /* Map */
-var target = document.getElementById('target');
-var targetBox = document.getElementById('target-box')
-var targetBox2 = document.getElementById('target-box2');
+  
+<script>   
+      // pixels per second, change this value to adjust movement speed
+  
+      /* Map */
+      const MOVEMENT_SPEED = 100;
+      const target = document.getElementById("target");
 
-targetBox.addEventListener('click', mouseClicked);
-targetBox2.addEventListener('click', mouseClicked);  
+      const targetBoxes = [
+        "target-box", "target-box2"
+      ].map(id => document.getElementById(id));
+      
+      targetBoxes.forEach(box => box.addEventListener("click", mouseClicked));
+      
+      let animationRequestId = null;
+      function mouseClicked(event) {
+        // cancel running animation to run the newer animation
+        if (animationRequestId) cancelAnimationFrame(animationRequestId);
 
-function mouseClicked (event){
-  var xposition = (event.clientX - target.offsetLeft - target.offsetWidth/2);
-  var yposition = (event.clientY - target.offsetTop - target.offsetHeight/2);
-  target.style.transform = "translate("+ xposition + "px," + yposition + "px)";
-  console.log(event);
-}
+        const computedTargetStyle = getComputedStyle(target);
+        const startPosition = {
+          x: parseFloat(computedTargetStyle.left),
+          y: parseFloat(computedTargetStyle.top),
+        };
+
+        const destination = {
+          x: event.clientX,
+          y: event.clientY,
+        };
+
+        const distance = Math.sqrt(
+          (destination.x - startPosition.x) ** 2 + (destination.y - startPosition.y) ** 2
+        );
+
+        const moveDuration = distance / MOVEMENT_SPEED;
+
+        let startTime = document.timeline.currentTime;
+
+        function animation(time) {
+          const elapsedTime = (time - startTime) / 1000.0;
+
+          // goes from 0 -> 1.0, once reaches 1.0 means the animation is completed
+          const completionRate = Math.min(elapsedTime / moveDuration, 1.0);
+
+          const newPosition = {
+            x: startPosition.x + (destination.x - startPosition.x) * completionRate,
+            y: startPosition.y + (destination.y - startPosition.y) * completionRate,
+          };
+
+          target.style.left = `${newPosition.x}px`;
+          target.style.top = `${newPosition.y}px`;
+
+          if (completionRate < 1.0) 
+            animationRequestId = requestAnimationFrame(animation);
+          else 
+            animationRequestId = null;
+        }
+
+        animationRequestId = requestAnimationFrame(animation);
+      }
+
 </script>  
 
   </body>

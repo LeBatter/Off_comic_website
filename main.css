@@ -349,12 +349,12 @@ button{
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 50%;
+  top: 2%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   transform-origin: 25px 25px; 
-  transition: all 2.5s linear;
+  pointer-events: none;
 }
 
 #barrier{
