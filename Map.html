@@ -14,12 +14,11 @@
   
   <body>
   
-<div>
+<div class="div_shut_the_fuck_up">
   <img src="Assets/blank.JPG" id="target-box">
-  <img src="Assets/blank.JPG" id="target-box2">
-   <img src="Assets/barrier.bmp" id="barrier">
+  <img src="Assets/barrier.bmp" class=barrier style=margin-left:5%;>
     </div>
-   <div id="target"> 
+   <div id="target" class="div_shut_the_fuck_up"> 
 </div> 
   
   
@@ -36,81 +35,135 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-<script>   
-      // pixels per second, change this value to adjust movement speed
-  
-      /* Map */
-      const MOVEMENT_SPEED = 100;
-      const target = document.getElementById("target");
+  <script>
+    // pixels per second, change this value to adjust movement speed
+    const MOVEMENT_SPEED = 100;
 
-      const targetBoxes = [
-        "target-box", "target-box2"
-      ].map(id => document.getElementById(id));
-      
-      targetBoxes.forEach(box => box.addEventListener("click", mouseClicked));
-      
-      let animationRequestId = null;
-      function mouseClicked(event) {
-        // cancel running animation to run the newer animation
-        if (animationRequestId) cancelAnimationFrame(animationRequestId);
+    /* Map */
+    const target = document.getElementById("target");
 
-        const computedTargetStyle = getComputedStyle(target);
-        const startPosition = {
-          x: parseFloat(computedTargetStyle.left),
-          y: parseFloat(computedTargetStyle.top),
-        };
+    const targetBoxes = ["target-box"].map((id) => document.getElementById(id));
 
-        const destination = {
-          x: event.clientX,
-          y: event.clientY,
-        };
+    const barriers = [...document.getElementsByClassName("barrier")];
 
-        const distance = Math.sqrt(
-          (destination.x - startPosition.x) ** 2 + (destination.y - startPosition.y) ** 2
-        );
+    targetBoxes.forEach((box) => box.addEventListener("click", mouseClicked));
 
-        const moveDuration = distance / MOVEMENT_SPEED;
+    let animationRequestId = null;
+    function mouseClicked(event) {
+      // cancel running animation to run the newer animation
+      if (animationRequestId)
+        cancelAnimationFrame(animationRequestId);
 
-        let startTime = document.timeline.currentTime;
+      const barrierRects = barriers.map((b) => b.getBoundingClientRect());
+      const targetBoxRects = targetBoxes.map((b) => b.getBoundingClientRect());
+      const targetRect = target.getBoundingClientRect();
 
-        function animation(time) {
+      const computedTargetStyle = getComputedStyle(target);
+      const startPosition = {
+        x: parseFloat(computedTargetStyle.left),
+        y: parseFloat(computedTargetStyle.top),
+      };
+
+      const thisTargetBoxRect = event.target.getBoundingClientRect();
+      const halfTargetWidth = targetRect.width * 0.5;
+      const halfTargetHeight = targetRect.height * 0.5;
+      const destination = {
+        x: clamp(event.clientX, thisTargetBoxRect.x + halfTargetWidth, thisTargetBoxRect.x + thisTargetBoxRect.width - halfTargetWidth),
+        y: clamp(event.clientY, thisTargetBoxRect.y + halfTargetHeight, thisTargetBoxRect.y + thisTargetBoxRect.height - halfTargetHeight)
+      };
+
+      const distance = Math.sqrt(
+        (destination.x - startPosition.x) ** 2 + (destination.y - startPosition.y) ** 2
+      );
+
+      const moveDuration = distance / MOVEMENT_SPEED;
+
+      let startTime = document.timeline.currentTime;
+      let prevTime = document.timeline.currentTime;
+      function animation(currentTime) {
+        const delta = 1 / 60;
+        let time = prevTime
+
+        while (time < currentTime) {
+          time = Math.min(time + delta, currentTime);
+
           const elapsedTime = (time - startTime) / 1000.0;
 
           // goes from 0 -> 1.0, once reaches 1.0 means the animation is completed
           const completionRate = Math.min(elapsedTime / moveDuration, 1.0);
 
-          const newPosition = {
+          const newPostition = {
             x: startPosition.x + (destination.x - startPosition.x) * completionRate,
             y: startPosition.y + (destination.y - startPosition.y) * completionRate,
+          }
+
+          const newTargetRect = {
+            x: newPostition.x - (targetRect.width * 0.5),
+            y: newPostition.y - (targetRect.height * 0.5),
+            width: targetRect.width,
+            height: targetRect.height
           };
 
-          target.style.left = `${newPosition.x}px`;
-          target.style.top = `${newPosition.y}px`;
+          const collided = barrierRects.some((barrierRect) => AABBCheck(barrierRect, newTargetRect));
 
-          if (completionRate < 1.0) 
-            animationRequestId = requestAnimationFrame(animation);
-          else 
+          const isInsideTargetBoxes = targetBoxRects.some((targetBoxRect) => (
+            AABBCheck(targetBoxRect, newTargetRect) &&
+            !(
+              newPostition.x < targetBoxRect.x + halfTargetWidth
+              || newPostition.x > targetBoxRect.x + targetBoxRect.width - halfTargetWidth
+              || newPostition.y < targetBoxRect.y + halfTargetHeight
+              || newPostition.y > targetBoxRect.y + targetBoxRect.height - halfTargetHeight
+            ))
+          );
+
+          if (collided || !isInsideTargetBoxes) {
             animationRequestId = null;
+            prevTime = currentTime;
+            return;
+          }
+
+          target.style.left = `${newPostition.x}px`;
+          target.style.top = `${newPostition.y}px`;
+
+          if (completionRate >= 1.0)
+            break;
         }
 
-        animationRequestId = requestAnimationFrame(animation);
+        prevTime = currentTime;
+        const elapsedTime = (currentTime - startTime) / 1000.0;
+        if (elapsedTime < moveDuration)
+          animationRequestId = requestAnimationFrame(animation);
+        else
+          animationRequestId = null;
       }
 
-</script>  
+      animationRequestId = requestAnimationFrame(animation);
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function AABBCheck(rect1, rect2) {
+      return rect1.x < rect2.x + rect2.width
+        && rect1.x + rect1.width > rect2.x
+        && rect1.y < rect2.y + rect2.height
+        && rect1.y + rect1.height > rect2.y
+    }
+  </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
   </body>
 
