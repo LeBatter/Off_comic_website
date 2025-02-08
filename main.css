@@ -168,9 +168,13 @@ div{
 
 .go_forward{
 float: right;
+position:sticky;
+top: 0;
 }
 .go_back{
 float: left;
+position:sticky;
+top: 0;
 }
 
 .column {
@@ -271,7 +275,7 @@ button{
   justify-content: center;
   align-items: start;
   padding: 20px;
-  background: #e6e9ff;
+  background: white;
 }
 /* fade in */
 .fade-in-text {
