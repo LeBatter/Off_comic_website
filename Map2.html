@@ -1,0 +1,63 @@
+
+<html>
+  <head>
+    <script src="javascript.js"></script>
+     <meta charset="utf-8">
+   
+   <link rel="stylesheet" href="main.css">
+  
+  
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+   <title>Off 2 Comic</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel = "icon" href="Assets/icon_head.png"
+        type = "image/png">    
+  </head>
+  
+  
+  
+  <!-- add with javascript -->
+<body>
+  <!-- Loader -->
+  <div id="loader-screen" class="fade-out-text">
+    <div class="container">
+      <h2 id="loader">Page Purification in progress<span id="wait">.</span></h2>
+      <div class="progress"></div>
+      <div class="bar-space"></div>
+    </div>
+  </div>
+
+  <!-- Actual Content (initially hidden) -->
+  <div id="main-content" style="display: none;">
+    <!-- Your actual Comics & Gallery page content goes here -->
+    <h1>Welcome to Comics & Gallery</h1>
+    <!-- more content... -->
+  </div>
+
+  <!-- Loader Animation JS -->
+  <script>
+    var dots = window.setInterval(function () {
+      var wait = document.getElementById("wait");
+      if (wait.innerHTML.length > 2)
+        wait.innerHTML = "";
+      else
+        wait.innerHTML += ".";
+    }, 1000);
+
+    window.addEventListener("load", function () {
+      let pb = new Progress(15, 0, 100, { parent: ".progress" });
+      pb.startTo(5, 400);
+
+      setTimeout(() => {
+        document.getElementById("loader").innerHTML = 'Page Purification done.';
+      }, 6500);
+
+      // After 12s, hide loader and show content
+      setTimeout(() => {
+        document.getElementById("loader-screen").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }, 12000);
+    });
+  </script>
+</body>

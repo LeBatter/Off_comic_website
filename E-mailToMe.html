@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="javascript.js"></script>
      <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="main.css">
@@ -16,21 +17,22 @@
         type = "image/png">    
   </head>
   
- <body class="fade-in-text">
+ <body>
+   <article id="Loader_Worker" style="display: none;" class="fade-in-text">
   <div>
    <h1>Contact me!</h1>
   </div>
 <nav>
   <ul>
-    <li><a href="InBetweenLoaderToIndex.html">Main Page</a></li>
-    <li id="Comics"><a href="InBetweenLoaderToComics.html">Comics & Gallery</a></li>
+    <li><a href="index.html">Main Page</a></li>
+    <li id="Comics"><a href="Comics&Gallery.html">Comics & Gallery</a></li>
     <li id=ContactMe class="You_are_here"><a class="You_are_here">Contact me!</a></li>
   </ul>
 </nav>
    <div>
    <p class=InTheMiddle>If you wish to talk to me or to simply ask me a question you can send me an e-mail here and I am pretty sure I will answer it as soon as I see it.<br>
    <br>
-   (When you send the letter for some reason the link it gives doesn't let you back to the website so you have to go back manually)
+   (For some reason it says system error but no idea why it will send your E-mail don't worry.)
    </p>
    </div>
   <div>
@@ -45,6 +47,41 @@
     <input value="Send" type="submit">
     </form>
 </div>
+</article>
+   
+       <!-- Loader -->
+  <div id="loader-screen" class="fade-out-text">
+    <div class="container">
+      <h2 id="loader">Page Purification in progress<span id="wait">.</span></h2>
+      <div class="progress"></div>
+      <div class="bar-space"></div>
+    </div>
+  </div>
+  <!-- Loader Animation JS -->
+  <script>
+    var dots = window.setInterval(function () {
+      var wait = document.getElementById("wait");
+      if (wait.innerHTML.length > 2)
+        wait.innerHTML = "";
+      else
+        wait.innerHTML += ".";
+    }, 1000);
+
+    window.addEventListener("load", function () {
+      let pb = new Progress(15, 0, 100, { parent: ".progress" });
+      pb.startTo(5, 400);
+
+      setTimeout(() => {
+        document.getElementById("loader").innerHTML = 'Page Purification done.';
+      }, 6500);
+
+      // After 5s, hide loader and show content
+      setTimeout(() => {
+        document.getElementById("loader-screen").style.display = "none";
+        document.getElementById("Loader_Worker").style.display = "block";
+      }, 12000);
+    }); 
+   </script>
 </body>
   
   
