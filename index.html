@@ -126,8 +126,13 @@
       <div class="bar-space"></div>
     </div>
   </div>
-  <!-- Loader Animation JS -->
-  <script>
+    
+ <script>
+  if (!localStorage.getItem("hasLoadedBefore")) {
+    // Set the flag so this block won't run again
+    localStorage.setItem("hasLoadedBefore", "true");
+
+    // Start dots animation
     var dots = window.setInterval(function () {
       var wait = document.getElementById("wait");
       if (wait.innerHTML.length > 2)
@@ -144,13 +149,21 @@
         document.getElementById("loader").innerHTML = 'Page Purification done.';
       }, 6500);
 
-      // After 5s, hide loader and show content
+      // After 12s, hide loader and show content
       setTimeout(() => {
         document.getElementById("loader-screen").style.display = "none";
         document.getElementById("Loader_Worker").style.display = "block";
       }, 12000);
-    }); 
-   </script>
+    });
+  } else {
+    // If already loaded once, skip the loader and show content immediately
+    window.addEventListener("load", function () {
+      document.getElementById("loader-screen").style.display = "none";
+      document.getElementById("Loader_Worker").style.display = "block";
+    });
+  }
+</script>
+
     
   </body> 
 </html>

@@ -13,8 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
    <title>Off 2 Comic</title>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel = "icon" href="Assets/icon_head.png"
-        type = "image/png">
+    <link rel = "icon" href="Assets/icon_head.png" type = "image/png">
   </head>
 <body>
  <article id="Loader_Worker" style="display: none;" class="fade-in-text">
@@ -180,34 +179,43 @@ flex-direction:column;
 </div>
 
 
- <script>
-// create references to the modal...
-var modal = document.getElementById('myModal');
-// to all images -- note I'm using a class!
-var images = document.getElementsByClassName('myImages');
-// the image in the modal
-var modalImg = document.getElementById("myImg1");
-// and the caption in the modal
-var captionText = document.getElementById("caption");
+<script>
+  if (!localStorage.getItem("hasLoadedBefore")) {
+    // Set the flag so this block won't run again
+    localStorage.setItem("hasLoadedBefore", "true");
 
-// Go through all of the images with our custom class
-for (var i = 0; i < images.length; i++) {
-  var img = images[i];
-  // and attach our click listener for this image.
-  img.onclick = function(evt) {
-    console.log(evt);
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
+    // Start dots animation
+    var dots = window.setInterval(function () {
+      var wait = document.getElementById("wait");
+      if (wait.innerHTML.length > 2)
+        wait.innerHTML = "";
+      else
+        wait.innerHTML += ".";
+    }, 1000);
+
+    window.addEventListener("load", function () {
+      let pb = new Progress(15, 0, 100, { parent: ".progress" });
+      pb.startTo(5, 400);
+
+      setTimeout(() => {
+        document.getElementById("loader").innerHTML = 'Page Purification done.';
+      }, 6500);
+
+      // After 12s, hide loader and show content
+      setTimeout(() => {
+        document.getElementById("loader-screen").style.display = "none";
+        document.getElementById("Loader_Worker").style.display = "block";
+      }, 12000);
+    });
+  } else {
+    // If already loaded once, skip the loader and show content immediately
+    window.addEventListener("load", function () {
+      document.getElementById("loader-screen").style.display = "none";
+      document.getElementById("Loader_Worker").style.display = "block";
+    });
   }
-}
-
-var span = document.getElementsByClassName("close")[0];
-
-span.onclick = function() {
-  modal.style.display = "none";
-}
 </script>
+
   
 
   
