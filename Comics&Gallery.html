@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
   <script src="javascript.js"></script>
    <meta charset="utf-8">
@@ -14,28 +14,8 @@
    <title>Off 2 Comic</title>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel = "icon" href="Assets/icon_head.png" type = "image/png">
-  </head>
-<body>
- <article id="Loader_Worker" style="display: none;" class="fade-in-text">
-<div>
- <h1>Comics & Draws</h1> 
-</div>
-<nav>
-  <ul>
-    <li><a href="index.html">Main Page</a></li>
-    <li id=Comics class="You_are_here"><a class="You_are_here">Comics & Gallery</a></li>
-    <li id=ContactMe><a href="E-mailToMe.html">Contact me!</a></li>
-  </ul>
-</nav>
-  <div class=little_space>
-  <p class=InTheMiddle>
-   Welcome to the Gallery of Pictures that i made most of these are self-explanatory but there is some description.
-  </p><br>
-  <br>
-  <a href="#jumptocomic" class=bigger_font>Click here for comics</a>
-  </div>
-  
-<style>
+    
+    <style>
   .gallery {
     width: 960px;
     margin: 0 auto;
@@ -138,6 +118,30 @@ flex-direction:column;
   max-width:300px;
 }
 </style>
+    
+  </head> <body>
+<body>
+ <div id="Loader_Worker" style="display: none;" class="fade-in-text">
+<div>
+ <h1>Comics & Draws</h1> 
+</div>
+<nav>
+  <ul>
+    <li><a href="index.html">Main Page</a></li>
+    <li id=Comics class="You_are_here"><a class="You_are_here">Comics & Gallery</a></li>
+    <li id=ContactMe><a href="E-mailToMe.html">Contact me!</a></li>
+  </ul>
+</nav>
+  <div class=little_space>
+  <p class=InTheMiddle>
+   Welcome to the Gallery of Pictures that i made most of these are self-explanatory but there is some description.
+  </p><br>
+  <br>
+  <a href="#jumptocomic" class=bigger_font>Click here for comics</a>
+  </div>
+</div>
+  
+
 
 <div class="gallery">
     <div class="gallery-item">
@@ -170,15 +174,51 @@ flex-direction:column;
     <p>Loading screen 1</p>
   </div>
  </div>
- <div id="myModal" class="modal">
-  <!-- The Close Button -->
-  <span class="close">x</span>
-<img class="modal-content" id="myImg1">
-  <!-- Modal Caption (Image Text) -->
-  <div id="caption"></div>
-</div>
 
+  <div id="myModal" class="modal">
 
+    <!-- The Close Button -->
+
+    <span class="close">x</span>
+    <img class="modal-content" id="myImg1">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+  </div>
+
+<script>
+// create references to the modal...
+var modal = document.getElementById('myModal');
+// to all images -- note I'm using a class!
+var images = document.getElementsByClassName('myImages');
+// the image in the modal
+var modalImg = document.getElementById("myImg1");
+// and the caption in the modal
+var captionText = document.getElementById("caption");
+
+// Go through all of the images with our custom class
+for (var i = 0; i < images.length; i++) {
+  var img = images[i];
+  // and attach our click listener for this image.
+  img.onclick = function(evt) {
+    console.log(evt);
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+  }
+}
+
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+
+  
+  
+  
+  
 <script>
   if (!localStorage.getItem("hasLoadedBefore")) {
     // Set the flag so this block won't run again
@@ -233,10 +273,8 @@ flex-direction:column;
   </ul>
   <p class=ComicPadding2>.</p>
 </div> 
-  </article>  
-   
-   
-   
+  </div>  
+
     <!-- Loader -->
   <div id="loader-screen" class="fade-out-text">
     <div class="container">
@@ -271,6 +309,9 @@ flex-direction:column;
     }); 
    </script>
    
+
+   
 </body>
-</html>
-  
+</html>   
+        
+   
