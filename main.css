@@ -69,6 +69,7 @@ h2{
 }
 body{
   background:black;
+  min-width: 642px;
 }
 
 nav li{
@@ -150,8 +151,8 @@ area{
 
 .Page1{
   width:40rem;
-  margin-top:5rem;
-  padding-bottom:10rem; 
+  margin-top:1rem;
+  padding-bottom:5rem; 
 }
 
 .Page2{
