@@ -59,12 +59,13 @@
   </div>
    
  <script>
-  if (!localStorage.getItem("hasLoadedBefore")) {
+  if (!localStorage.getItem("hasLoadedBeforeinEmail")) {
     // Set the flag so this block won't run again
-    localStorage.setItem("hasLoadedBefore", "true");
-
+    localStorage.setItem("hasLoadedBeforeinEmail", "true");
+    
     // Start dots animation
     var dots = window.setInterval(function () {
+      document.getElementById("loader-screen").style.display = "block";
       var wait = document.getElementById("wait");
       if (wait.innerHTML.length > 2)
         wait.innerHTML = "";

@@ -15,7 +15,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel = "icon" href="Assets/icon_head.png" type = "image/png">
   </head> <body>
- <div id="Loader_Worker" style="display: none;" class="fade-in-text">
+ <article id="Loader_Worker" style="display: none;" class="fade-in-text">
 <div>
  <h1>Comics & Draws</h1> 
 </div>
@@ -33,7 +33,7 @@
   <br>
   <a href="#jumptocomic" class=bigger_font>Click here for comics</a>
   </div>
-</div>
+
   
 
 
@@ -113,13 +113,14 @@ span.onclick = function() {
   
   
   
-<script>
-  if (!localStorage.getItem("hasLoadedBefore")) {
+ <script>
+  if (!localStorage.getItem("hasLoadedBeforeinComics")) {
     // Set the flag so this block won't run again
-    localStorage.setItem("hasLoadedBefore", "true");
-
+    localStorage.setItem("hasLoadedBeforeinComics", "true");
+    
     // Start dots animation
     var dots = window.setInterval(function () {
+      document.getElementById("loader-screen").style.display = "block";
       var wait = document.getElementById("wait");
       if (wait.innerHTML.length > 2)
         wait.innerHTML = "";
@@ -151,9 +152,6 @@ span.onclick = function() {
 </script>
 
   
-
-  
-  
   
 <div>
   <h1 id="jumptocomic" class="ComicPadding1">Comics</h1>
@@ -168,7 +166,7 @@ span.onclick = function() {
   <p class=ComicPadding2>.</p>
 </div> 
   </div>  
-
+ </article>
     <!-- Loader -->
   <div id="loader-screen" class="fade-out-text">
     <div class="container">
@@ -177,34 +175,8 @@ span.onclick = function() {
       <div class="bar-space"></div>
     </div>
   </div>
-  <!-- Loader Animation JS -->
-  <script>
-    var dots = window.setInterval(function () {
-      var wait = document.getElementById("wait");
-      if (wait.innerHTML.length > 2)
-        wait.innerHTML = "";
-      else
-        wait.innerHTML += ".";
-    }, 1000);
 
-    window.addEventListener("load", function () {
-      let pb = new Progress(15, 0, 100, { parent: ".progress" });
-      pb.startTo(5, 400);
-
-      setTimeout(() => {
-        document.getElementById("loader").innerHTML = 'Page Purification done.';
-      }, 6500);
-
-      // After 5s, hide loader and show content
-      setTimeout(() => {
-        document.getElementById("loader-screen").style.display = "none";
-        document.getElementById("Loader_Worker").style.display = "block";
-      }, 12000);
-    }); 
-   </script>
-   
-
-   
+  
 </body>
 </html>   
         
