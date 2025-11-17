@@ -28,7 +28,7 @@
 </nav>
   <div class=little_space>
   <p class=InTheMiddle>
-   Welcome to the Gallery of Pictures that i made most of these are self-explanatory but there is some description.
+   Welcome to the Gallery of Pictures, most of these drawings are self-explanatory, but there are some descriptions.
   </p><br>
   <br>
   <a href="#jumptocomic" class=bigger_font>Click here for comics</a>
@@ -94,19 +94,21 @@
 <script>
 // create references to the modal...
 var modal = document.getElementById('myModal');
-// to all images -- note I'm using a class!
 var images = document.getElementsByClassName('myImages');
-// the image in the modal
 var modalImg = document.getElementById("myImg1");
-// and the caption in the modal
 var captionText = document.getElementById("caption");
 
 // Go through all of the images with our custom class
 for (var i = 0; i < images.length; i++) {
   var img = images[i];
-  // and attach our click listener for this image.
+
   img.onclick = function(evt) {
-    console.log(evt);
+
+    // *** prevent on small screens ***
+    if (window.innerWidth < 992) {
+      return; // do nothing
+    }
+
     modal.style.display = "block";
     modalImg.src = this.src;
     captionText.innerHTML = this.alt;
@@ -120,10 +122,6 @@ span.onclick = function() {
 }
 </script>
 
-  
-  
-  
-  
  <script>
   if (!localStorage.getItem("hasLoadedBeforeinComics")) {
     // Set the flag so this block won't run again
