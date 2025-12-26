@@ -14,7 +14,7 @@
    <title>Off 2 Comic</title>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel = "icon" href="Assets/icon_head.png" type = "image/png">
-  </head>
+  <link rel = "icon" href="Assets/icon_head.png" type = "image/png"> </head>
   <body>
    <article id="Loader_Worker" style="display: none;" class="fade-in-text"> 
     <div>
@@ -29,6 +29,7 @@
     <li class="You_are_here"><a class="You_are_here">Main Page</a></li>
     <li id=Comics><a href="Comics_&_Gallery.html">Comics & Gallery</a></li>
     <li id=ContactMe><a href="E-mailToMe.html">Contact me!</a></li>
+    <li id=Shop><a href="Zacheries_Shop_Menu_Only.html">Zacherie's Shop</a></li>
   </ul>
 </nav>
   
@@ -164,7 +165,12 @@
     });
   }
 </script>
-
+    
+ <script>
+   if (localStorage.getItem("Shop_avalaible") === "yes"){
+     document.getElementById("Shop").style.display = "inline-block";
+   }
+   </script>
     
   </body> 
 </html>

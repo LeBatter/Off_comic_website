@@ -27,6 +27,7 @@
     <li><a href="index.html">Main Page</a></li>
     <li id="Comics"><a href="Comics_&_Gallery.html">Comics & Gallery</a></li>
     <li id=ContactMe class="You_are_here"><a class="You_are_here">Contact me!</a></li>
+    <li id=Shop><a href="Zacheries_Shop_Menu_Only.html">Zacherie's Shop</a></li>
   </ul>
 </nav>
    <div>
@@ -96,5 +97,12 @@
   }
 </script>
 
+    <script>
+   if (localStorage.getItem("Shop_avalaible") === "yes"){
+     document.getElementById("Shop").style.display = "inline-block";
+   }
+   </script>
+   
+   
 </body>
 </html>

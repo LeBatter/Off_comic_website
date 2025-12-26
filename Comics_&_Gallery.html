@@ -24,6 +24,7 @@
     <li><a href="index.html">Main Page</a></li>
     <li id=Comics class="You_are_here"><a class="You_are_here">Comics & Gallery</a></li>
     <li id=ContactMe><a href="E-mailToMe.html">Contact me!</a></li>
+    <li id=Shop><a href="Zacheries_Shop_Menu_Only.html">Zacherie's Shop</a></li>
   </ul>
 </nav>
   <div class=little_space>
@@ -56,7 +57,7 @@
     </div>
     <div class="gallery-item">
     <img src="Assets/batter%20screen.png" class="myImages" id="myImg"/>
-    <p> </p>
+    <p><br> </p>
   </div>
     <div class="gallery-item">
     <img src="Assets/Soldier.JPG" class="myImages" id="myImg"/>
@@ -76,9 +77,14 @@
   </div>
     <div class="gallery-item">
     <img src="Assets/Maus_candide_fandraw_3.jpg" class="myImages" id="myImg"/>
-    <p></p>
+    <p><br></p>
   </div>
+   
+    <div class="gallery-item">
+    <img src="Assets/Fanart%20General%20Lord%20Bear.webp" class="myImages" id="myImg"/>
+    <p>Nother phenomenal work from the Maus</p>
  </div>
+  </div>
 
   <div id="myModal" class="modal">
 
@@ -160,7 +166,11 @@ span.onclick = function() {
   }
 </script>
 
-  
+  <script>
+   if (localStorage.getItem("Shop_avalaible") === "yes"){
+     document.getElementById("Shop").style.display = "inline-block";
+   }
+  </script>
   
 <div>
   <h1 id="jumptocomic" class="ComicPadding1">Comics</h1>
@@ -171,6 +181,7 @@ span.onclick = function() {
     <li><a href="Drabble_1.html" class="InTheMiddle">Drabble 500:First Memory</a></li>
     <li><a href="Comic_4_folder/Comic4_page1.html" class="InTheMiddle">Second Short Comic</a></li>
     <li><a href="Comic_5_folder/Comic5_page1.html" class="InTheMiddle">Third Short Comic</a></li>
+    <li><a href="Comic_6_folder/Page_1_interactable.html" class="InTheMiddle">Third Comic</a><p> (ONLY WORKS ON PC)</p></li>
   </ul>
   <p class=ComicPadding2>.</p>
 </div> 

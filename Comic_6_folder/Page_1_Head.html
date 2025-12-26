@@ -15,66 +15,24 @@
 <body>
  
   <a href="Page_1_interactable.html"><img src="../Assets/back.png" class="go_back" id="testFlash"></a>
-  
-  
-
-  
-
-<div class="click-zoom picture_centerer"> <!--class="click-zoom"-->
-  <label>
-     <input type="checkbox">
-    <img id="mainImage" src="Assets_Comic_6/Comic6_Page_1_Head.jpg" class="page1">
-      <img id="mainImageFlash" class="page1" style="display: none;">
-  </label>
+<div class="picture_centerer">
+  <div class="zoom-scope">
+    <div class="click-zoom2">
+      <label>
+        <input type="checkbox">
+        <img id="mainImage" src="Assets_Comic_6/Comic6_Page_1_Head.jpg" class="page1">
+        <img id="mainImageFlash" class="page1" style="display: none;">
+      </label>
+    </div>
+    <div class="text-overlay" id="Head_Page_1">
+      How can a statue bleed?
+    </div>
+  </div>
 </div>
+
 
     <!--<button id="testFlash">Test Flash Now</button>-->
 
-    
-
-
- <!--
- <script>
-  const replacementImages = [
-    "./Assets_Comic_6/I_SEE_YOU.jpg"
-  ];
-  const imageElement = document.getElementById("mainImage");
-  const originalSrc = imageElement.src;
-  const redirectLink = "Page_1_interactable.html"; // always go here after flash
-  const flashChance = 1;
-  let hasFlashed = localStorage.getItem("imageFlashed");
-  
-  // Test Flash button
-  document.getElementById("testFlash").addEventListener("click", () => flashImage());
-
-  // Add flash logic to all links
-  document.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", (event) => {
-      if (!hasFlashed && Math.random() < flashChance) {
-        flashImage(event);
-      }
-      // else, link works normally
-    });
-  });
-
-  function flashImage(event) {
-    localStorage.setItem("imageFlashed", "true");
-    hasFlashed = true;
-    // Prevent immediate navigation if triggered by a link
-    event?.preventDefault();
-
-    // Pick a random replacement image
-    const randomIndex = Math.floor(Math.random() * replacementImages.length);
-    imageElement.src = replacementImages[randomIndex];
-    
-    // Show flash for 1 second, then go to redirectLink
-    setTimeout(() => {
-      imageElement.src = originalSrc; // restore original (optional)
-      window.location.href = redirectLink; // navigate immediately
-    }, 1000); // flash duration in ms
-  }
-</script>
--->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const replacementImages = ["./Assets_Comic_6/I_SEE_YOU.jpg"];
@@ -86,6 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Track if flash has happened
   let hasFlashed = localStorage.getItem("imageFlashed") === "true";
 
+  // ADDED: reference to text overlay
+  const textOverlay = document.querySelector(".text-overlay");
+
   function flashImage(event) {
     // Only flash if it hasn’t already flashed
     if (hasFlashed) return;
@@ -96,6 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
     hasFlashed = true;
     localStorage.setItem("imageFlashed", "true");
     event?.preventDefault();
+
+    // ADDED: remove text overlay ONLY when flash fires
+    if (textOverlay) textOverlay.remove();
 
     // Pick a random replacement image
     const randomIndex = Math.floor(Math.random() * replacementImages.length);
@@ -113,13 +77,5 @@ document.addEventListener("DOMContentLoaded", () => {
   backLink.addEventListener("click", (e) => flashImage(e));
 });
 </script>
-
-
-
-
-
-
-    
-
  </body> 
 </html> 
