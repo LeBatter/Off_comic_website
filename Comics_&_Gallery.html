@@ -129,10 +129,10 @@ span.onclick = function() {
 </script>
 
  <script>
-  if (!localStorage.getItem("hasLoadedBeforeinComics")) {
+  if (!localStorage.getItem("hasLoadedBefore")) {
     // Set the flag so this block won't run again
-    localStorage.setItem("hasLoadedBeforeinComics", "true");
-    
+    localStorage.setItem("hasLoadedBefore", "true");
+
     // Start dots animation
     var dots = window.setInterval(function () {
       document.getElementById("loader-screen").style.display = "block";
