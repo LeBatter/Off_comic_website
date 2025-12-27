@@ -128,19 +128,19 @@
     </div>
   </div>
     
- <script>
-  if (!localStorage.getItem("hasLoadedBefore")) {
-    // Set the flag so this block won't run again
-    localStorage.setItem("hasLoadedBefore", "true");
+<script>
+  if (!localStorage.getItem("hasLoadedBeforein")) {
+    localStorage.setItem("hasLoadedBeforein", "true");
 
-    // Start dots animation
-    var dots = window.setInterval(function () {
-      document.getElementById("loader-screen").style.display = "block";
-      var wait = document.getElementById("wait");
-      if (wait.innerHTML.length > 2)
-        wait.innerHTML = "";
-      else
-        wait.innerHTML += ".";
+    // Show loader once
+    const loaderScreen = document.getElementById("loader-screen");
+    const wait = document.getElementById("wait");
+    loaderScreen.style.display = "block";
+
+    // Start dots animation (ONLY updates dots)
+    const dots = window.setInterval(function () {
+      if (wait.innerHTML.length > 2) wait.innerHTML = "";
+      else wait.innerHTML += ".";
     }, 1000);
 
     window.addEventListener("load", function () {
@@ -148,17 +148,18 @@
       pb.startTo(5, 400);
 
       setTimeout(() => {
-        document.getElementById("loader").innerHTML = 'Page Purification done.';
+        document.getElementById("loader").innerHTML = "Page Purification done.";
       }, 6500);
 
-      // After 12s, hide loader and show content
       setTimeout(() => {
-        document.getElementById("loader-screen").style.display = "none";
+        // STOP the interval so it can't re-show anything
+        clearInterval(dots);
+
+        loaderScreen.style.display = "none";
         document.getElementById("Loader_Worker").style.display = "block";
       }, 12000);
     });
   } else {
-    // If already loaded once, skip the loader and show content immediately
     window.addEventListener("load", function () {
       document.getElementById("loader-screen").style.display = "none";
       document.getElementById("Loader_Worker").style.display = "block";

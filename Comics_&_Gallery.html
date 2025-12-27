@@ -35,7 +35,7 @@
   <a href="#jumptocomic" class=bigger_font>Click here for comics</a>
   </div>
 
-  
+
 
 
 <div class="gallery">
@@ -128,43 +128,9 @@ span.onclick = function() {
 }
 </script>
 
- <script>
-  if (!localStorage.getItem("hasLoadedBefore")) {
-    // Set the flag so this block won't run again
-    localStorage.setItem("hasLoadedBefore", "true");
 
-    // Start dots animation
-    var dots = window.setInterval(function () {
-      document.getElementById("loader-screen").style.display = "block";
-      var wait = document.getElementById("wait");
-      if (wait.innerHTML.length > 2)
-        wait.innerHTML = "";
-      else
-        wait.innerHTML += ".";
-    }, 1000);
 
-    window.addEventListener("load", function () {
-      let pb = new Progress(15, 0, 100, { parent: ".progress" });
-      pb.startTo(5, 400);
 
-      setTimeout(() => {
-        document.getElementById("loader").innerHTML = 'Page Purification done.';
-      }, 6500);
-
-      // After 12s, hide loader and show content
-      setTimeout(() => {
-        document.getElementById("loader-screen").style.display = "none";
-        document.getElementById("Loader_Worker").style.display = "block";
-      }, 12000);
-    });
-  } else {
-    // If already loaded once, skip the loader and show content immediately
-    window.addEventListener("load", function () {
-      document.getElementById("loader-screen").style.display = "none";
-      document.getElementById("Loader_Worker").style.display = "block";
-    });
-  }
-</script>
 
   <script>
    if (localStorage.getItem("Shop_avalaible") === "yes"){
@@ -187,7 +153,8 @@ span.onclick = function() {
   <p class=ComicPadding2>.</p>
 </div> 
     </article> 
-    <!-- Loader -->
+
+       <!-- Loader -->
   <div id="loader-screen" class="fade-out-text">
     <div class="container">
       <h2 id="loader">Page Purification in progress<span id="wait">.</span></h2>
@@ -195,7 +162,47 @@ span.onclick = function() {
       <div class="bar-space"></div>
     </div>
   </div>
+  
+  
+  <script>
+  if (!localStorage.getItem("hasLoadedBeforeinComics")) {
+    localStorage.setItem("hasLoadedBeforeinComics", "true");
 
+    // Show loader once
+    const loaderScreen = document.getElementById("loader-screen");
+    const wait = document.getElementById("wait");
+    loaderScreen.style.display = "block";
+
+    // Start dots animation (ONLY updates dots)
+    const dots = window.setInterval(function () {
+      if (wait.innerHTML.length > 2) wait.innerHTML = "";
+      else wait.innerHTML += ".";
+    }, 1000);
+
+    window.addEventListener("load", function () {
+      let pb = new Progress(15, 0, 100, { parent: ".progress" });
+      pb.startTo(5, 400);
+
+      setTimeout(() => {
+        document.getElementById("loader").innerHTML = "Page Purification done.";
+      }, 6500);
+
+      setTimeout(() => {
+        // STOP the interval so it can't re-show anything
+        clearInterval(dots);
+
+        loaderScreen.style.display = "none";
+        document.getElementById("Loader_Worker").style.display = "block";
+      }, 12000);
+    });
+  } else {
+    window.addEventListener("load", function () {
+      document.getElementById("loader-screen").style.display = "none";
+      document.getElementById("Loader_Worker").style.display = "block";
+    });
+  }
+</script>
+  
   
 </body>
 </html>   
