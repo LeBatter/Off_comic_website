@@ -490,6 +490,7 @@ justify-content: center;
     text-align:left;
     flex-direction:column;
     display:flex;
+    padding-bottom: 15px;
   }
   .gallery-item img{
   max-width:300px;
