@@ -503,7 +503,7 @@ justify-content: center;
  }
 }
 
-@media(min-width:992px){
+@media(min-width:993px){
 .gallery {
     width: 960px;
     margin: 0 auto;
