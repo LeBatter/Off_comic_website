@@ -553,8 +553,8 @@ justify-content: center;
   .modal-content {
   margin: auto;
   display: block;
-  width: 80%;
-  max-width: 700px;
+  max-width: -webkit-fill-available;
+  max-height: -webkit-fill-available;
   animation-name: zoom;
   animation-duration: 0.6s;
 }
@@ -581,9 +581,9 @@ justify-content: center;
   width: 80%;
   max-width: 700px;
   text-align: center;
-  color: #ccc;
+  color: white;
   padding: 10px 0;
-  height: 150px;
+  height: auto;
 }
 #loader-screen {
   display: none;
