@@ -577,12 +577,14 @@ justify-content: center;
 }
 #caption {
   margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: block;
   width: 80%;
   max-width: 700px;
   text-align: center;
   color: white;
-  padding: 10px 0;
+  padding: 10px;
   height: auto;
 }
 #loader-screen {
@@ -735,3 +737,5 @@ justify-content: center;
     width:10rem;
     display: none;
 }
+
+
