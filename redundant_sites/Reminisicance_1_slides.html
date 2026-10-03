@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+     <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=0.5">
+   <link rel="stylesheet" href="../main.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+    <title>Off 2 Comic</title>
+        <link rel = "icon" href="../Assets/icon_head_96x96.png" type = "image/png" sizes="96x96"> <link rel="shortcut icon" href="../Assets/favicon.ico" /><link rel="icon" type="image/svg+xml" href="../Assets/favicon.svg" />  
+  </head> <body>
+
+  <a href="../Comics_&_Gallery.html#jumptocomic" class="go_forward">Click here to go back to menu</a>
+<div class="slidecontainer">
+  <p>Currently playing: Rinse And Repeat by 
+Alias Conrad Coldwood Volume control:</p>
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+</div>
+
+  
+<div>
+    <div class="Slider">
+        <img src="Assets_Reminisicance_1/Picture_1.webp" class="Page_Reminisicance_1_picture_1">
+    <div class="Reminisicance_text-overlay" id="Reminisicance_Page_1">
+      There is some kind of liquid oozing out of these holes. Something deep down, pulsates.There is some kind of liquid oozing out of these holes. Something deep down, pulsates.There is some kind of liquid oozing out of these holes. Something deep down, pulsates.
+    </div>
+    </div>
+</div>
+   
+    
+    
+    
+    
+    
+<audio id="audioFile">
+    <source src="Assets_Reminisicance_1/Alias-Conrad-Coldwood-Rinse-And-Repeat-_audio_-_mp3cut.net.ogg" type="audio/ogg">
+</audio>
+    
+    
+    
+    
+    
+<script>
+const text = document.getElementById("Reminisicance_Page_1");
+const picture = document.querySelector(".Page_Reminisicance_1_picture_1");
+
+const fullText = `There is some kind of liquid oozing out of these holes. Something deep down, pulsates.
+There is some kind of liquid oozing out of these holes. Something deep down, pulsates.
+There is some kind of liquid oozing out of these holes. Something deep down, pulsates.
+!`;
+
+let textData = fullText;
+let typing = false;
+let animationFinished = false;
+let typingInterval = null;
+
+text.textContent = "";
+
+function startTyping() {
+    if (typing) return;
+
+    text.style.animation = "fadeIn 1s forwards";
+
+    animationFinished = true;
+    typing = true;
+
+    typingInterval = setInterval(() => {
+        if (textData.length > 0) {
+            text.textContent += textData.charAt(0);
+            textData = textData.substring(1);
+        } else {
+            clearInterval(typingInterval);
+            typingInterval = null;
+            typing = false;
+        }
+    }, 10);
+}
+
+picture.addEventListener("animationend", function () {
+    startTyping();
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key.toLowerCase() !== "e") return;
+
+    // If image animation is still running
+    if (!animationFinished) {
+
+        // Stop the animation
+        picture.style.animation = "none";
+
+        // Put image at its final position
+        picture.style.transform = "translate(-350px, -300px)";
+
+        // Start the text immediately
+        startTyping();
+
+        return;
+    }
+
+    // If text is still typing, reveal everything
+    if (typing) {
+        clearInterval(typingInterval);
+        typingInterval = null;
+
+        text.textContent = fullText;
+        textData = "";
+        typing = false;
+
+        return;
+    }
+
+    // Text is finished
+    document.getElementsByClassName('Page_Reminisicance_1_picture_1').src='Assets_Reminisicance_1/Picture_2.png'
+});
+    
+    
+//                      volume slider
+//var slider = document.getElementById("myRange");
+//output.innerHTML = slider.value; // Display the default slider value
+//
+//// Update the current slider value (each time you drag the slider handle)
+//slider.oninput = function() {
+//  output.innerHTML = this.value;
+//}
+//    
+//                         MUSIC
+//var audioToPlay = document.getElementById("audioFile");
+//
+//window.onload = function() {
+//    audioToPlay.play()
+//}
+</script>
+
+</body> </html> 

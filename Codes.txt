@@ -1,0 +1,645 @@
+if (key === "e") {
+ counter++;
+ project.textData = "";
+ text.setText(project.textData2)
+ 
+ if(counter === 2){
+     gotoNextFrame();
+     text.setText("");
+ }
+}
+
+
+project.framesCount++;
+
+if(project.framesCount%1 === 0){
+   // Any code you write here will run once every second
+
+   // this checks to see if there are any characters left
+   if(project.textData.length>0){ 
+      // add the first character to the text object
+      text.setText(text.textContent + project.textData.charAt(0));
+      // remove the first character in project.textData since we already wrote it
+      project.textData = project.textData.substring(1);
+   }
+    else {
+    counter = 1;// typing finished
+  }
+}
+
+
+project.framesCount = 0;
+counter = 0;
+project.textData = 
+`Ahahah!`;
+text.setText("");
+
+var fontText = document.createElement('fontText');
+fontText.innerHTML = "<link href='https://fonts.googleapis.com/css2?family=VT323&display=swap' rel='stylesheet'>";
+document.head.appendChild(fontText);
+text.fontFamily='VT323';
+
+
+
+
+.Slider {
+    display: inline-block;
+    width: 60rem;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    justify-content: center;
+}
+
+@keyframes slideRight {
+    from {
+        transform: translate(0, -300px);
+    }
+
+    to {
+        transform: translate(-350px, -300px);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.Page_Reminisicance_1_picture_1 {
+    animation: slideRight 4.2s linear forwards;
+    width: 90rem;
+}
+
+
+.Reminisicance_text-overlay {
+    position: absolute;
+    z-index: 5;
+    background: rgba(54, 54, 55, 0.95);
+    color: white;
+}
+
+#Reminisicance_Page_1 {
+    min-width: 60rem;
+    padding: 15px;
+    padding-left: 22px;
+    font-size: 20px;
+    text-align: left;
+    top: 501px;
+    bottom: 0;
+    transform: none;
+    opacity: 0;
+}
+
+.slidecontainer {
+  width: 250px; /* Width of the outside container */ 
+  z-index: 4;
+  display: inline-block;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  border-radius: 5px; 
+  background: white; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%; 
+  background: black; /* Green background */
+  cursor: url(Assets/off_Cursor_pointer.png), pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%;
+  background: black; /* Green background */
+  cursor: url(Assets/off_Cursor_pointer.png), pointer; /* Cursor on hover */
+}
+
+
+
+#float_right {
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+const scenes = Array.from(document.querySelectorAll(".comic-scene"));
+const fullTexts = scenes.map(scene => scene.dataset.text.trim());
+const textElements = scenes.map(scene => scene.querySelector(".comic-text"));
+const pictures = scenes.map(scene => scene.querySelector(".comic-picture"));
+
+const audioFile = document.getElementById("audioFile");
+const volumeSlider = document.getElementById("myRange");
+
+let currentScene = 0;
+let textIndex = 0;
+let typingInterval = null;
+let typing = false;
+let animationFinished = false;
+let transitioning = false;
+let hasStarted = false;
+
+const typingSpeed = 10;
+const transitionDuration = 3000;
+
+// Set the starting volume to match the slider.
+audioFile.volume = volumeSlider.value / 100;
+
+// Change music volume while moving the slider.
+volumeSlider.addEventListener("input", () => {
+  audioFile.volume = volumeSlider.value / 100;
+});
+
+function startTyping() {
+  const textBox = textElements[currentScene];
+
+  textBox.style.display = "block";
+  textBox.textContent = "";
+
+  clearInterval(typingInterval);
+
+  textIndex = 0;
+  typing = true;
+
+  typingInterval = setInterval(() => {
+    const fullText = fullTexts[currentScene];
+
+    if (textIndex < fullText.length) {
+      textBox.textContent += fullText.charAt(textIndex);
+      textIndex++;
+    } else {
+      clearInterval(typingInterval);
+      typingInterval = null;
+      typing = false;
+    }
+  }, typingSpeed);
+}
+
+function setFinalPicturePosition(picture) {
+  picture.style.animation = "none";
+  picture.style.transform = "translate(-350px, -300px)";
+}
+
+function showScene(index) {
+  const scene = scenes[index];
+  const picture = pictures[index];
+
+  scene.classList.add("active");
+
+  picture.style.animation = "";
+  picture.style.transform = "";
+
+  animationFinished = false;  // Reset this here
+  textIndex = 0;  // Add this line
+
+  picture.addEventListener("animationend", function onEnd() {
+    picture.removeEventListener("animationend", onEnd);
+
+    if (currentScene === index) {
+      animationFinished = true;
+
+      if (!transitioning) {
+        startTyping();
+      }
+    }
+  });
+}
+
+function nextScene() {
+  if (
+    transitioning ||
+    currentScene >= scenes.length - 1
+  ) {
+    return;
+  }
+
+  transitioning = true;
+
+  clearInterval(typingInterval);
+  typingInterval = null;
+  typing = false;
+
+  const oldScene = scenes[currentScene];
+  const nextIndex = currentScene + 1;
+  const newScene = scenes[nextIndex];
+
+  currentScene = nextIndex;
+
+  newScene.classList.add("active", "scene-fade-in");
+  oldScene.classList.add("scene-fade-out");
+
+  showScene(currentScene);
+
+  setTimeout(() => {
+    oldScene.classList.remove("active", "scene-fade-out");
+    newScene.classList.remove("scene-fade-in");
+    
+    // Hide the old text box
+    textElements[currentScene - 1].style.display = "none";
+    textElements[currentScene - 1].textContent = "";
+
+    transitioning = false;
+
+    if (animationFinished) {
+      startTyping();
+    }
+  }, transitionDuration);
+}
+
+document.addEventListener("keydown", event => {
+  if (
+    event.key.toLowerCase() !== "e" ||
+    event.repeat
+  ) {
+    return;
+  }
+
+  // First E press starts the music and starts the first picture.
+  if (!hasStarted) {
+    hasStarted = true;
+
+    audioFile.currentTime = 0;
+
+    audioFile.play().catch(error => {
+      console.error("The audio could not start:", error);
+    });
+
+    showScene(0);
+    return;
+  }
+
+  if (transitioning) {
+    return;
+  }
+
+  // If the picture is still moving, finish its animation.
+  if (!animationFinished) {
+    setFinalPicturePosition(pictures[currentScene]);
+
+    animationFinished = true;
+    startTyping();
+
+    return;
+  }
+
+  // If the text is typing, immediately show all of it.
+  if (typing) {
+    clearInterval(typingInterval);
+    typingInterval = null;
+
+    textElements[currentScene].textContent =
+      fullTexts[currentScene];
+
+    typing = false;
+
+    return;
+  }
+
+  // Otherwise, move to the next picture.
+  nextScene();
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+     <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=0.5">
+   <link rel="stylesheet" href="../main.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+    <title>Off 2 Comic</title>
+        <link rel = "icon" href="../Assets/icon_head_96x96.png" type = "image/png" sizes="96x96"> <link rel="shortcut icon" href="../Assets/favicon.ico" /><link rel="icon" type="image/svg+xml" href="../Assets/favicon.svg" />  
+  </head> <body>
+
+  <a href="../Comics_&_Gallery.html#jumptocomic" class="go_forward">Click here to go back to menu</a>
+<div class="slidecontainer">
+  <p>
+    Currently playing: Rinse And Repeat by Alias Conrad Coldwood<br>
+    Volume control:
+  </p>
+
+  <input
+    type="range"
+    min="0"
+    max="100"
+    value="50"
+    class="slider"
+    id="myRange"
+  >
+</div>
+
+<audio id="audioFile" preload="auto">
+  <source
+    src="Assets_Reminisicance_1/Alias-Conrad-Coldwood-Rinse-And-Repeat-_audio_-_mp3cut.net.ogg"
+    type="audio/ogg"
+  >
+</audio>
+
+<div id="startInstructions" class="picture_centerer">
+    <div class="text">
+        <h2 style="font-size: x-large">
+            This is a slide show. You can start the animation by pressing E.
+            You can also skip the animation forward by pressing E.
+        </h2>
+    </div>
+</div>
+          
+    
+    
+    
+    
+    
+<div class="comic-slider-wrapper">
+  <div class="Slider" id="comicSlider">
+      <section class="comic-scene" data-text="There is some kind of liquid oozing out of these holes. Something deep down, pulsates. There is some kind of liquid oozing out of these holes. Something deep down, pulsates. There is some kind of liquid oozing out of these holes. Something deep down, pulsates.">
+      <img src="Assets_Reminisicance_1/nothing.bmp" class="comic-picture nothing" alt="Comic scene 1">
+        <div class="Reminisicance_text-overlay comic-text comic-only-text" id="Reminisicance_Page_1"></div>
+    </section>
+      
+    <section class="comic-scene" data-text="There is some kind of liquid oozing out of these holes. Something deep down, pulsates. There is some kind of liquid oozing out of these holes. Something deep down, pulsates. There is some kind of liquid oozing out of these holes. Something deep down, pulsates.">
+      <img src="Assets_Reminisicance_1/Picture_1.webp" class="comic-picture slide-right" alt="Comic scene 2">
+        <div class="Reminisicance_text-overlay comic-text"></div>
+    </section>
+      
+    <!-- Duplicate a comic-scene section for each new image; change its image, class and data-text. -->
+    <section class="comic-scene" data-text="Add the text for the next scene here.">
+      <img src="Assets_Reminisicance_1/Picture_2.png" class="comic-picture slide-down" alt="Comic scene 3">
+      <div class="Reminisicance_text-overlay comic-text"></div>
+    </section>
+      
+    <section class="comic-scene" data-text="Add the text for the third scene here.">
+      <img src="Assets_Reminisicance_1/Picture_3.png" class="comic-picture slide-left" alt="Comic scene 4">
+      <div class="Reminisicance_text-overlay comic-text"></div>
+    </section>
+  </div>
+</div>
+    
+    
+    
+<script>
+const scenes = Array.from(document.querySelectorAll(".comic-scene"));
+const fullTexts = scenes.map(scene => scene.dataset.text.trim());
+const textElements = scenes.map(scene => scene.querySelector(".comic-text"));
+const pictures = scenes.map(scene => scene.querySelector(".comic-picture"));
+
+const audioFile = document.getElementById("audioFile");
+const volumeSlider = document.getElementById("myRange");
+
+let currentScene = 0;
+let textIndex = 0;
+let typingInterval = null;
+let typing = false;
+let animationFinished = false;
+let transitioning = false;
+let hasStarted = false;
+
+const typingSpeed = 10;
+const transitionDuration = 800;
+const pictureAnimations = ["nothing", "slide-right", "slide-down", "slide-left"];
+
+    
+audioFile.volume = 0.2;
+volumeSlider.value = 20;
+volumeSlider.addEventListener("input", () => {
+  audioFile.volume = volumeSlider.value / 100;
+});
+    
+audioFile.addEventListener("ended", () => {
+  audioFile.currentTime = 0;
+  audioFile.play();
+});
+function startTyping() {
+  const textBox = textElements[currentScene];
+  textBox.style.display = "block";
+  textBox.textContent = "";
+  clearInterval(typingInterval);
+  textIndex = 0;
+  typing = true;
+
+  typingInterval = setInterval(() => {
+    const fullText = fullTexts[currentScene];
+
+    if (textIndex < fullText.length) {
+      textBox.textContent += fullText.charAt(textIndex);
+      textIndex++;
+    } else {
+      clearInterval(typingInterval);
+      typingInterval = null;
+      typing = false;
+    }
+  }, typingSpeed);
+}
+
+function restartPictureAnimation(index) {
+  const picture = pictures[index];
+  const animationClass = pictureAnimations[index] || "slide-right";
+
+  picture.classList.remove(...pictureAnimations);
+  void picture.offsetWidth; // force restart
+  picture.classList.add(animationClass);
+  picture.style.animation = "";
+  picture.style.transform = "";
+}
+
+function setFinalPicturePosition(picture) {
+  picture.classList.remove(...pictureAnimations);
+  picture.style.animation = "none";
+  
+  // Set the final transform based on which scene we're on
+  const finalPositions = [
+    "transform: translate(0, 0)",
+    "translate(-350px, -300px)",      // Scene 1 (slide-right) - start position is the end
+    "translate(-350px, -10px)", // Scene 2 (slide-down) - top position
+    "translate(-350px, -300px)"  // Scene 3 (slide-left) - left position
+  ];
+  
+  picture.style.transform = finalPositions[currentScene];
+}
+
+function showScene(index) {
+  const scene = scenes[index];
+  const picture = pictures[index];
+
+  scene.classList.add("active");
+  restartPictureAnimation(index);
+
+  animationFinished = false;
+
+  picture.onanimationend = function () {
+    if (currentScene === index) {
+      animationFinished = true;
+
+      if (!transitioning) {
+        startTyping();
+      }
+    }
+  };
+}
+
+function nextScene() {
+  if (transitioning || currentScene >= scenes.length - 1) return;
+
+  transitioning = true;
+
+  clearInterval(typingInterval);
+  typingInterval = null;
+  typing = false;
+
+  const oldScene = scenes[currentScene];
+  const oldIndex = currentScene;
+  const nextIndex = currentScene + 1;
+  const newScene = scenes[nextIndex];
+
+  currentScene = nextIndex;
+
+  newScene.classList.add("active", "scene-fade-in");
+  oldScene.classList.add("scene-fade-out");
+
+  showScene(currentScene);
+
+  setTimeout(() => {
+    oldScene.classList.remove("active", "scene-fade-out");
+    newScene.classList.remove("scene-fade-in");
+
+    textElements[oldIndex].style.display = "none";
+    textElements[oldIndex].textContent = "";
+
+    transitioning = false;
+
+    if (animationFinished) {
+      startTyping();
+    }
+  }, transitionDuration);
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key.toLowerCase() !== "e" || event.repeat) return;
+
+if (!hasStarted) {
+    hasStarted = true;
+
+    const instructions = document.getElementById("startInstructions");
+
+    if (instructions) {
+        instructions.remove();
+    }
+
+    audioFile.currentTime = 0;
+
+    audioFile.play().catch(error => {
+        console.error("The audio could not start:", error);
+    });
+
+    showScene(0);
+    return;
+}
+
+  if (transitioning) return;
+
+  if (!animationFinished) {
+    setFinalPicturePosition(pictures[currentScene]);
+    animationFinished = true;
+    startTyping();
+    return;
+  }
+
+  if (typing) {
+    clearInterval(typingInterval);
+    typingInterval = null;
+    textElements[currentScene].textContent = fullTexts[currentScene];
+    typing = false;
+    return;
+  }
+
+  nextScene();
+});
+</script>
+    
+
+
+</body> </html> 
